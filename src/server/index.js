@@ -1,24 +1,28 @@
 import express from 'express';
 import config from '../../config.js';
 import { fileURLToPath  } from 'url';
-import path, { dirname } from 'path';
+import path , { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 
 const app = express();
 
+app.use(express.static(path.join(dirname(__filename), '../../public')));
+
 
 app.get("/" , (req , res) => {
+    console.log(path.join(dirname(__filename), 'server'))
     res.send("hola mundo");
+
 });
 
 
 app.get("/gpt", (req, res) => {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
 
+    console.log(path.join(dirname(__filename), 'server'))
     const filePath = path.join(__dirname, '../../public/index.html');
-    console.log(filePath);
-
     res.sendFile(filePath);
 
 });
