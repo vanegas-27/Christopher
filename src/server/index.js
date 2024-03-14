@@ -12,8 +12,7 @@ const app = express();
 app.use(express.static(path.join(dirname(__filename), '../../public')));
 
 app.get("/", (req, res) => {
-
-    console.log(path.join(dirname(__filename), 'server'))
+    
     const filePath = path.join(__dirname, '../../public/index.html');
     res.sendFile(filePath);
 

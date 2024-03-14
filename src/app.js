@@ -1,8 +1,22 @@
 import Gpt from "./gpt/chatGpt.js";
 
-const chatGpt = new Gpt();
+const gpt = new Gpt();
 
-chatGpt.generate("que lenguaje de programacion fue el mejor en 2023")
+gpt.chat("que lenguaje de programacion fue el mejor en 2023",100)
+.then( async rel => {
 
-.then(rel => console.log(rel.generations[0].text))
+    let mensaje = ""
+
+    for await (const message of rel) {
+        if (message.eventType === "text-generation") {
+            mensaje += message.text;
+        }
+    }
+    return mensaje
+}).then(msg => console.log(msg))
 .catch(err => console.error(err))
+
+
+// gpt.generateGpt("que lenguaje de programacion fue el mejor en 2023")
+// .then(rel => console.log(rel.generations[0].text))
+// .catch(err => console.error(err))
