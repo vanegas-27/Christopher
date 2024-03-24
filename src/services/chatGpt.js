@@ -1,5 +1,5 @@
 import { CohereClient } from "cohere-ai";
-import config from "../config.js";
+import config from "../config/config.js";
 
 class Gpt {
 
@@ -36,8 +36,6 @@ class Gpt {
             text : "el lenguaje mas popular del 2023 es Python, despues lo sigue C++ y JavaScript."
         }
 
-        console.log(this.getMsg)
-
         return await this._co.chatStream({
             chatHistory: this._msgAfter,
             message: promp,
@@ -51,15 +49,14 @@ class Gpt {
     }
 
 
-    async generateGpt(text) {
+    async generateGpt(text,tokes = 100) {
 
-        return await this._co.generate({
-            prompt: text,
+        return await this._co.chat({
+            message: text,
+            connectors : [{ id : "web-search"}],
             model: "command-light",
             temperature: 0.5,
-            maxTokens: 100,
-            presencePenalty: 0.3,
-            frequencyPenalty: 0.3
+            maxTokens: tokes,
         });
 
     }

@@ -20,9 +20,9 @@
   "repository": {
     "url": "https://github.com/vanegas-27/Christopher"
   },
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "cohere-ai": "^7.7.7",
+    "cohere-ai": "7.7.7",
     "express": "4.18.3"
   },
   "devDependencies": {

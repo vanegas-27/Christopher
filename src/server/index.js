@@ -1,5 +1,5 @@
 import express from 'express';
-import config from '../config.js';
+import config from '../config/config.js';
 import { fileURLToPath  } from 'url';
 import path , { dirname } from 'path';
 
@@ -20,5 +20,5 @@ app.get("/", (req, res) => {
 
 
 app.listen(config.port , () => {
-    console.log(`El servidor esta corriendo en ${config.port}`)
+    console.log(`El servidor esta corriendo en http://localhost:${config.port}`)
 })
