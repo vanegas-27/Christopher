@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
+
+
+.bash{
+    display:block;
+    background-color: #111111;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px 0px;
+    font-weight: 600;
+    box-shadow: -4px 4px 2px #222121;
+    width: max-content;
+}
