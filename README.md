@@ -1,4 +1,4 @@
-# GPT Christopher(https://vanegas-27.github.io/Christopher/public/)
+# GPT Christopher
 
 ![Christopher](./public/assest/chr.png)
 
