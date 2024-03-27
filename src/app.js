@@ -22,7 +22,7 @@ gpt.chat("el mejor lenguaje de programacion en 2024",100)
     return mensaje
 }).then(msg => {
     console.log(msg)
-    console.timeEnd("time_chat") // misma pregunta 3 intentos... N°1 = 4.344s      N°2 = 3.316s      N°3 = 3.297s
+    console.timeEnd("time_chat") // misma pregunta 3 intentos... N°1 = 4.344s      N°2 = 3.316s      N°3 = 3.297s (varia dependiendo los tokes)
 })
 .catch(err => console.error(err))
 
@@ -35,7 +35,7 @@ gpt.generate("recomiendame una ruta de front-end")
 .then(rel => {
     gpt.setMsgGenerate = rel.chat_history
     console.log(rel.text)
-    console.timeEnd("time_gene") // misma pregunta 3 intentos... N°1 = 3.754s       N°2 = 3.032s      N°3 = 3.808s
+    console.timeEnd("time_gene") // misma pregunta 3 intentos... N°1 = 3.754s       N°2 = 3.032s      N°3 = 3.808s (varia dependiendo los tokes)
 })
 .catch(err => console.error(err))
 

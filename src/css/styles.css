@@ -4,13 +4,9 @@
 
 
 .bash{
-    display:block;
-    background-color: #111111;
-    border-radius: 10px;
-    color: #c0baba;
-    padding: 10px 20px;
-    margin: 10px 0px;
+    @apply block w-[100%] bg-[#111111] rounded-md text-[#c0baba] px-5 py-2 my-4;
     font-weight: 600;
+    font-size : 0.90rem;
     box-shadow: -4px 4px 2px #222121;
-    width: max-content;
+    max-width: max-content;
 }
