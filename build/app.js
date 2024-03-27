@@ -1,10 +1,10 @@
-import Gpt from "./services/chatGpt.js";
+"use strict";
 
-const gpt = new Gpt();
-
-const chat = gpt.chat()
-const generate = gpt.generate()
-
+var _chatGpt = _interopRequireDefault(require("./services/chatGpt.js"));
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var gpt = new _chatGpt["default"]();
+var chat = gpt.chat();
+var generate = gpt.generate();
 
 // modelo N°1
 
@@ -15,7 +15,6 @@ const generate = gpt.generate()
 // console.log(rel1)
 // console.timeEnd("time_chat")
 
-
 // modelo N°2
 
 // console.time("time_generate")
@@ -24,4 +23,3 @@ const generate = gpt.generate()
 // })
 // console.log(rel2)
 // console.timeEnd("time_generate")
-
