@@ -1,0 +1,33 @@
+```
+└── 📁Christopher
+    └── .babelrc
+    └── .editorconfig
+    └── .env
+    └── .gitignore
+    └── LICENSE
+    └── package-lock.json
+    └── package.json
+    └── 📁public
+        └── 📁assets
+            └── chr.png
+            └── christopher.webp
+            └── 📁icons
+                └── github.svg
+        └── 📁css
+            └── styles.css
+        └── index.html
+    └── README.md
+    └── 📁src
+        └── app.js
+        └── 📁config
+            └── config.js
+        └── 📁css
+            └── styles.css
+        └── 📁server
+            └── index.js
+        └── 📁services
+            └── chatGpt.js
+    └── structur.md
+    └── tailwind.config.js
+    └── tailwindcss.config.full.js
+```

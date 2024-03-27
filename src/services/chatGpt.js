@@ -3,97 +3,114 @@ import config from "../config/config.js";
 
 class _Chat {
 
-    constructor(token){
-        this._msgAfterChat = []
-        this._token = token
+  constructor(token) {
+    this._msgAfterChat = []
+    this._token = token
+  }
+
+
+  get getMsgChat() {
+    return this._msgAfterChat
+  }
+
+
+  set setMsgChat(msg) {
+    this._msgAfterChat.push({
+      role: msg.user,
+      message: msg.text
+    })
+  }
+
+  async chatGpt(promp, tokes = 500) {
+
+    this.setMsgChat = {
+      user: "USER",
+      text: promp
     }
 
+    this.rel = await this._token.chatStream({
+      chatHistory: this._msgAfterChat,
+      message: promp,
+      connectors: [{ id: "web-search" }],
+      model: "command-light",
+      maxTokens: tokes,
 
-    get getMsgChat(){
-        return this._msgAfterChat
+    });
+
+    this.mensaje = ""
+
+    for await (const message of this.rel) {
+      if (message.eventType === "text-generation") this.mensaje = this.mensaje.concat(message.text);
     }
 
-
-    set setMsgChat(msg){
-        this._msgAfterChat.push({
-            role : msg.user,
-            message : msg.text
-        })
+    this.setMsgChat = {
+      user: "CHATBOT",
+      text: this.mensaje
     }
 
-    async chat(promp,tokes) {
+    return this.mensaje
 
-        this.setMsgChat = {
-            user : "USER",
-            text : promp
-        }
-
-        return await this._token.chatStream({
-            chatHistory: this._msgAfterChat,
-            message: promp,
-            // perform web search before answering the question. You can also use your own custom connector.
-            connectors: [{ id: "web-search" }],
-            model: "command-light",
-            maxTokens: tokes,
-
-        });
-
-    }
+  }
 
 }
 
 
 class _Generate {
 
-    constructor(token){
-        this._msgAftergenerate = []
-        this._token = token
-    }
+  constructor(token) {
+    this._msgAftergenerate = []
+    this._token = token
+  }
 
-    get getMsgGenerate(){
-        return this._msgAftergenerate
-    }
-
-
-    set setMsgGenerate(msg) {
-        this._msgAftergenerate.push(msg)
-    }
+  get getMsgGenerate() {
+    return this._msgAftergenerate
+  }
 
 
-    async generateGpt(promp,tokes) {
+  set setMsgGenerate(msg) {
+    this._msgAftergenerate.push(msg)
+  }
 
-        return await this._token.chat({
-            message: promp,
-            connectors : [{ id : "web-search"}],
-            model: "command-light",
-            temperature: 0.5,
-            maxTokens: tokes,
-        });
 
-    }
+  async generateGpt(promp, tokes = 500) {
+
+    this.rel = await this._token.chat({
+      message: promp,
+      connectors: [{ id: "web-search" }],
+      model: "command-light",
+      temperature: 0.5,
+      maxTokens: tokes,
+    });
+
+    this.setMsgGenerate = this.rel?.chat_history
+
+    return this.rel?.text
+
+  }
 }
 
 
+
 class Gpt {
-    
-    constructor(){
 
-        this._apiKey = config.apiKey
+  constructor() {
 
-        this._co = new CohereClient({
-            token: this._apiKey
-        })
+    this._apiKey = config.apiKey
 
-    }
+    this._co = new CohereClient({
+      token: this._apiKey
+    })
 
-    async chat(promp,tokes = 500){
-        return await new _Chat(this._co).chat(promp,tokes)
-    }
+  }
+
+  chat() {
+    return new _Chat(this._co)
+  }
 
 
-    async generate(promp,tokes = 500){
-        return await new _Generate(this._co).generateGpt(promp,tokes)
-    }
+  generate() {
+    return new _Generate(this._co)
+  }
 }
 
 
