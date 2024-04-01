@@ -3,7 +3,7 @@ import config from "../config/config.js";
 
 /**
  * Esta clase se encarga de gestionar un modelo GPT especifico
- * en este caso chatStream, esta asu vez contiene sus metodos
+ * en este caso chatStream, esta a su vez contiene sus metodos
  * y atributo propios para el GPT
  * ----
  *

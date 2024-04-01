@@ -9,4 +9,16 @@
     font-size : 0.90rem;
     box-shadow: -4px 4px 2px #222121;
     max-width: max-content;
+};
+
+h3{
+  @apply text-blue-600 mt-6 mb-2 text-2xl font-mono font-bold;
+}
+
+img {
+  @apply my-2 rounded-md;
+}
+
+p{
+  @apply font-mono text-[1.1rem];
 }

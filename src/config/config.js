@@ -12,6 +12,6 @@ config();
  * }
  */
 export default {
-    apiKey : process.env.APIKEY,
-    port : process.env.PORT
+  apiKey: process.env.APIKEY,
+  port: process.env.PORT
 }
